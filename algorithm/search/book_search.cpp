@@ -71,6 +71,92 @@ void cleanupdata() {
   }
 }
 
+/*本のデータをbookIDの順に昇順でクイックソートする*/
+// 僕が書いたやつ
+// void sortbook(int bottom, int top){
+//   int lower, upper;
+//   Cbook *x,*temp;
+//
+//   int(bottom >= top){
+//     return;
+//   }
+//
+//   /*配列の先頭を基準の値にする*/
+//   x = bookarray[bottom]->bookID;
+//   for(lower = bottom, upper = top; lower < upper){
+//     while( lower < upper && x > bookarray[lower]->bookID){ /*基準より大きい値が見つかるまでlowerを増やす*/
+//       lower++;
+//     }
+//     while(lower < upper && x < bookarray[upper]->bookID){ /*基準より小さい値が見つかるまでupperを減らす*/
+//       upper--;
+//     }
+//
+//     if(lower < upper){
+//       temp = bookarray[lower]->bookID;
+//       bookarray[lower]->bookID = bookarray[upper]->bookID;
+//       bookarray[upper] = temp;
+//       lower++;
+//       upper--;
+//     }
+//   }
+//
+//   sortbook(bottom, upper);
+//   sortbook(upper + 1, top);
+// }
+
+/*本のデータをbookIDの順に昇順でクイックソートする*/
+void sortbook(int bottom, int top){
+  int lower, upper;
+  Cbook *x,*temp;
+
+  if(bottom >= top){
+    return;
+  }
+
+
+  x = bookarray[bottom]; //配列の先頭を基準に設定する
+  for(lower = bottom, upper = top; lower < upper;){
+    while(*bookarray[lower] < *x){ //オブジェクトの大小を直接比較
+      lower++;
+    }
+    while(*bookarray[upper] > *x){
+      upper--;
+    }
+    if(lower < upper){
+      temp = bookarray[lower];
+      bookarray[lower] = bookarray[upper];
+      bookarray[upper] = temp;
+      lower++;
+      upper--;
+    }
+  }
+  sortbook(bottom, upper);
+  sortbook(upper + 1, top);
+}
+
+/*配列booksの中からbookIDがkeyと一致するデータをバイナリーサーチで
+検索して，その番号を返す．見つからなければ-1を返す.*/
+int searchbook(Cbook *books[], int size, int key){
+  int left,mid,right;
+
+  left = 0;
+  right = size;
+  while(left < right){
+    mid = (left + right) / 2;
+    if(*books[mid] < key){
+      left = mid + 1;
+    } else {
+      right = mid;
+    }
+  }
+  if(*books[left] == key){
+    return left;
+  }
+
+  return -1;
+}
+
+
 int main(void) {
   int key, position;
 
