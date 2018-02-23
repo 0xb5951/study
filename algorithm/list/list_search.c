@@ -22,8 +22,8 @@ int main(){
 
     if(buf){ /*新たな入力があったら*/
       /*新しいノードを作成*/
-      newnode = (ListNode*)malloc(sizeof(ListNode));
-      newnode->data = buf;
+      newnode = (ListNode*)malloc(sizeof(ListNode)); /*新しいノードのメモリをListNode分確保*/
+      newnode->data = buf; /**/
       newnode->next = NULL;
 
       if(lastnode != NULL){
@@ -48,17 +48,19 @@ int main(){
         if(thisnode->data == buf){
           printf("入力されたデータの中に%dが見つかりました。ノードを削除します.",buf);
 
+          //対象の前結合を無くす．
           if(thisnode->prev != NULL){ //先頭ノードではなければ
             thisnode->prev->next = thisnode->next;
           } else {
             firstnode = thisnode ->next;
           }
 
+          //対象の次結合を無くす
           if(thisnode->next != NULL) {
             thisnode->next->prev = thisnode ->prev;
           }
 
-          free(thisnode);
+          free(thisnode); //メモリを解放
           break;
         }
       }
