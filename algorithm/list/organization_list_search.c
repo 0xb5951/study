@@ -11,9 +11,8 @@ typedef struct tagListNode{
 
 int main(){
   int buf;
-  ListNode *firstnode, *lastnode, *thisnode, *newnode, *removenode;
+  ListNode *firstnode, *lastnode, *thisnode, *newnode, *tmpnode;
 
-  srand((unsigned int)time(NULL));
 
   firstnode = lastnode = NULL;
 
@@ -23,7 +22,7 @@ int main(){
     scanf("%d", &buf);
 
     if(buf){ /*新たな入力があったら*/
-      newnode = (ListNode*)malloc(ListNode);
+      newnode = (ListNode*)malloc(sizeof(ListNode));
       newnode->data = buf;
       newnode->next = NULL;
 
@@ -44,7 +43,43 @@ int main(){
     }
 
     /*検索値を入力*/
-    printf("検索したい値を入力してください(0を入力すると終了):");
-    scanf("%d", &b)
+    printf("\n検索したい値を入力してください(0を入力すると終了):");
+    scanf("%d", &buf);
+
+    if(buf != 0){
+      /*最初に入力した値の中から検索*/
+      for(thisnode = firstnode; thisnode != NULL;
+        tmpnode = thisnode, thisnode = thisnode->next){
+          if(thisnode->data == buf) {
+            printf("入力された値の中に%dが見つかりました。\n", buf);
+
+            //見つかった値を先頭に持ってくる
+            if(thisnode != firstnode){ //ノードが先頭じゃないとき
+              tmpnode->next = thisnode->next; //thisnodeを一つ次に移す。
+
+              if(lastnode == thisnode) { //このノードが最後のノードの場合。
+                lastnode = tmpnode; //このノードをlasrnodeにする
+              }
+
+              thisnode->next = firstnode;
+              firstnode = thisnode;
+            }
+            break;　//値が見つかればfor文を抜ける
+          }
+
+        }
+        if(thisnode == NULL){
+          printf("%dは入力されていませんでした。\n", buf);
+        }
+      }
+    }while(buf != 0);
+
+    thisnode = firstnode;
+    while(thisnode != NULL){ //対象がもと合った場所を消去
+      tmpnode = thisnode->next;
+      free(thisnode);
+      thisnode = tmpnode;
+    }
+
+    return EXIT_SUCCESS;
   }
-}
