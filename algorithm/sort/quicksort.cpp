@@ -12,7 +12,7 @@ void QuickSort(int bottom,int top,int *data){
   int lower, upper, point, temp;
 
   /*終了を判断する*/
-  if(bottom >= top){
+  if(bottom >= top){ //参照がぶつかったら
     return;
   }
 
@@ -20,12 +20,12 @@ void QuickSort(int bottom,int top,int *data){
   point = data[bottom];
 
   /*ソート部分*/
-  for(lower = bottom, upper = top; lower < upper;){
+  for(lower = bottom, upper = top; lower < upper;){ //lowerとupperがぶつかるまで
     while(lower <= upper && data[lower] < point){ /*（部分）配列の中で基準より大きい要素を探す*/
-      lower++;
+      lower++; //先頭から基準より大きい値が見つかるまで増加
     }
     while(lower <= upper && data[upper] > point){ /*(部分)配列の中で基準より小さい要素を探す*/
-      upper--;
+      upper--; //終端から基準より小さい値が見つかるまで減少
     }
     if(lower < upper){ /*要素を交換する*/
       temp = data[lower];
@@ -34,7 +34,8 @@ void QuickSort(int bottom,int top,int *data){
     }
   }
 
-  /*最初に選択した値を中央に移動する*/
+  /*最初に選択した値を中央に移動する
+  参照がぶつかれば基準点がそこにあるということ*/
   temp = data[bottom];
   data[bottom] = data[upper];
   data[upper] = temp;

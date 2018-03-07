@@ -1,3 +1,6 @@
+/*コームソートのプログラム
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -18,7 +21,7 @@ void CombSort(void){
     }
 
     flag = 1;
-    for(i = 0; i < N -gap; i++){
+    for(i = 0; i < N -　gap; i++){
       /*距離がgapだけ離れた要素を比較し、並びがおかしければ*/
       if(sort[i] > sort[i + gap]){
         temp = sort[i];

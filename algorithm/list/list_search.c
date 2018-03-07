@@ -23,13 +23,13 @@ int main(){
     if(buf){ /*新たな入力があったら*/
       /*新しいノードを作成*/
       newnode = (ListNode*)malloc(sizeof(ListNode)); /*新しいノードのメモリをListNode分確保*/
-      newnode->data = buf; /**/
-      newnode->next = NULL;
+      newnode->data = buf; /*受け取った値を格納*/
+      newnode->next = NULL; //新しい配列の次はまだない
 
-      if(lastnode != NULL){
+      if(lastnode != NULL){ //最初のノードじゃないとき
         lastnode->next = newnode;
         newnode->prev = lastnode;
-        lastnode = newnode;
+        lastnode = newnode; //中身を渡す
       } else { /*最初のノードをなら*/
         firstnode = lastnode = newnode;
         newnode->prev = NULL;

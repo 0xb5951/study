@@ -12,15 +12,13 @@
 int linear_search(int i, int *data, int n) { /*　探索対象　探索する配列　配列の最大値*/
   int x = 0; /*探索サーチ用*/
 
-  while( x < n && i != data[x]){
-    x++;
+  while( x < n && i != data[x]){　//配列の最大値まで探索＆＆サーチ対象が見つかるまで
+    x++; //サーチ対象を増加
   }
-  if( x < n){
+  if( x < n ){ //番号が配列の最大値よりも小さいとき（whileを前者の条件で抜けた可能性があるため）
     return x;
   }
-
   return NOT_FOUND;
-
 }
 
 int main(void) {

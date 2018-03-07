@@ -17,7 +17,8 @@ void BubbleSort(void) {
     flag = 0;
     for(i = 0; i < N-1; i++){
       /*配列の先頭から見ていく*/
-      if(sort[i] > sort[i+1]){
+      if(sort[i] > sort[i+1]){ //配列の前要素が後ろ要素より大きいとき
+        flag = 1; //ソート済みを判断する変数
         j = sort[i]; /*i番目の中身を一回逃がす*/
         sort[i+1] = j;  /*順番を入れ替える*/
         sort[i] = sort[i+1]; /*順番を入れ替える*/

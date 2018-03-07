@@ -20,14 +20,15 @@
 #define NOT_FOUND -1
 
 
-int organization_search(int key, int *a, int num){
+int organization_search(int key, int *a, int num){ /*　サーチ対象　目的配列　配列の最大値*/
   int n=0, t;
 
   while(n < num && a[n] != key){ /*対象の値が見つかるまで増加*/
     n++;
   }
 
-  if(n < num){
+  //ここではもう対象が見つかっている
+  if(n < num){ //サーチが配列の最大値より小さいとき
     if(n > 0){ /*一つ前と入れ替える。対象が先頭にあるとまずいのでif文で区切る*/
       t = a[n - 1];
       a[n - 1] = a[n];

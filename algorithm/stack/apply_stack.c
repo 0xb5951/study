@@ -43,10 +43,10 @@ void stack_push(int line, int column, int type){
   staple_new->type = type;
 
   /*リストの最後に追加する*/
-  staple_new->staple_next = NULL;
-  staple_new->staple_prev = staple_last;
+  staple_new->staple_next = NULL; //対象の次はなし
+  staple_new->staple_prev = staple_last; //スタックの最後に繋げる
   staple_last = staple_new; //値を代入
-  if(staple_head == NULL){
+  if(staple_head == NULL){ //最初の値のとき
     staple_head = staple_new;
   }
 }
@@ -64,7 +64,7 @@ int stack_pop(staple *ret) {
   ret->line = staple_last->line;
   ret->column = staple_last->column;
   ret->type = staple_last->type;
-  ret->staple_next = ret->staple_prev = NULL;
+  ret->staple_next = ret->staple_prev = NULL; //対象の結合を外す
   temp_staple = staple_last;
 
   /*リストから削除する*/

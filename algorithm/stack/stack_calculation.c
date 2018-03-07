@@ -4,7 +4,9 @@
 2.演算子が現れたら，スタックの上から2つの数字を取り出して演算子に対応した
 加減乗除を行い，その結果をスタックに積む.
 入力例
-30 50 + 4 12 + / = (30 + 50) / (4 + 12)
+30 50 + 4 12 + / =
+意味
+(30 + 50) / (4 + 12)
 */
 
 #include <stdio.h>
@@ -49,9 +51,9 @@ int main(){
   int i;
 
   do {
-    printf("現在のスタック(%d):" stack_top);
+    printf("現在のスタック(%d):", stack_top);
     for(i = 0; i < stack_top; i++){
-      printf("%0.3f", stack[i]) //現在のスタック状態を表示
+      printf("%0.3f ", stack[i]); //現在のスタック状態を表示
     }
 
     printf("\n>");
@@ -90,7 +92,7 @@ int main(){
        break;
     }
 
-  }while(buffer != '=');
+  }while(buffer[0] != '=');
 
   printf("計算結果は%fです\n", stack_pop());
   if(stack_top != 0){

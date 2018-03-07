@@ -9,7 +9,7 @@ int buffer[N];
 
 void MargeSort(int n, int x[]){
   int i, j, k, m;
-  if(n <= 1){
+  if(n <= 1){ //要素数が一つなら
     return;
   }
 
@@ -17,25 +17,26 @@ void MargeSort(int n, int x[]){
   m = n/2;
 
   /*ブロックを前半と後半に分ける*/
-  MargeSort(m,x);
-  MargeSort(n-m,x+m);
+  MargeSort(m,x); //後半部
+  MargeSort(n-m,x+m); //前半部
+  //ここで分割は終了
 
   /*マージ操作*/
-  for(i=0; i < m;i++){
+  for(i=0; i < m;i++){ //分割した配列のbufferに保存する
     buffer[i] = x[i];
   }
-  j = m;
+  j = m; //中間値を保存
   i = k = 0;
 
-  while(i < m && j < n) {
-    if(buffer[i] <= x[j]) {
-      x[k++] = buffer[i++];
-    } else{
-      x[k++] = x[i++];
+  while(i < m && j < n) { //前半部は中間値より小さくて、後半部が終端より小さいとき
+    if(buffer[i] <= x[j]) { //前半部より後半部の値が大きい時(正常なとき)
+      x[k++] = buffer[i++]; //同じ値を代入
+    } else{ //順番が違う時
+      x[k++] = x[j++]; //順番を入れ替える
     }
   }
-  while(i < m){
-    x[k++] = buffer[i++];
+  while(i < m){ //中間値の方が大きいとき
+    x[k++] = buffer[i++]; //
   }
 }
 

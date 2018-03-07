@@ -55,16 +55,18 @@ int main(){
 
             //見つかった値を先頭に持ってくる
             if(thisnode != firstnode){ //ノードが先頭じゃないとき
-              tmpnode->next = thisnode->next; //thisnodeを一つ次に移す。
+              tmpnode->next = thisnode->next; //tmpnodeを一つ次に移す。
+              //対象の前後間を結合させる 右のnextは結合のため(移動しない)　左は対象を指し示す（移動する）
 
-              if(lastnode == thisnode) { //このノードが最後のノードの場合。
+              if(lastnode == thisnode) { //このノードが最後のノードの場合
                 lastnode = tmpnode; //このノードをlasrnodeにする
               }
 
+              //対象のノードを先頭にする
               thisnode->next = firstnode;
               firstnode = thisnode;
             }
-            break;　//値が見つかればfor文を抜ける
+            break; //値が見つかればfor文を抜ける
           }
 
         }

@@ -20,7 +20,7 @@ void BubbleSort(void) {
     flag = 0;
     for(i = 0; i < N-1-k; i++){
       /*配列の先頭から見ていく*/
-      if(sort[i] > sort[i+1]){
+      if(sort[i] > sort[i+1]){ //もし順番が違うと
         j = sort[i]; /*i番目の中身を一回逃がす*/
         sort[i+1] = j;  /*順番を入れ替える*/
         sort[i] = sort[i+1]; /*順番を入れ替える*/
