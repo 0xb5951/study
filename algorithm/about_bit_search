@@ -1,0 +1,49 @@
+ビット全探索とは？
+二進数とビットを用いて、ある集合の部分集合を全探索するアルゴリズム。
+
+参考URL
+https://qiita.com/drken/items/7c6ff2aa4d8fce1c9361
+http://keita-matsushita.hatenablog.com/entry/2016/11/21/185949
+https://www.grapecity.com/tools/support/powernews/column/clang/019/page02.htm
+https://qiita.com/satoshinew/items/566bf91707b5371b62b6
+http://primenumber.hatenadiary.jp/entry/2016/12/01/000000
+
+フラグの状態をビットで管理することだと思う。
+全てのビットが１になるまで探索を続ければいいので、幅優先探索や深さ優先探索に
+比べ全探索が楽
+
+c言語のビット演算子
+ビットを一桁左シフトすると値は2倍に、右シフトすると半分にある。
+
+
+<< 左シフト　x << n ｘをｎ桁左シフト
+>> 右シフト　x >> n ｘをｎ桁右シフト
+~　補数　~x ｘのビットパターンを反転
+& 論理積　x & y ｘとｙの論理積
+| 論理和　x | y ｘとｙの論理和
+^　排他的論理和 x ^ y ｘとｙの排他的論理和
+
+ビット探索の基本構造
+
+//全てのパターンをbitによって列挙
+for (int i = 0; i < 1 << 3; i++) {
+
+	//それぞれの桁をチェック
+   	for (int j = 0; j < N; j++) {
+
+		//フラグが立っているか
+		if ((i >> j & 1) == 1) { //＆で区切られている
+			//フラグが立っている時に行う処理
+	      	}
+   	}
+}
+
+a 番目のフラグが立っている状態は (1<<a) と表せます。
+#define BIT_FLAG_0 (1<<0) // 0000 0000 0000 0001
+#define BIT_FLAG_1 (1<<1) // 0000 0000 0000 0010
+#define BIT_FLAG_2 (1<<2) // 0000 0000 0000 0100
+#define BIT_FLAG_3 (1<<3) // 0000 0000 0000 1000
+#define BIT_FLAG_4 (1<<4) // 0000 0000 0001 0000
+#define BIT_FLAG_5 (1<<5) // 0000 0000 0010 0000
+#define BIT_FLAG_6 (1<<6) // 0000 0000 0100 0000
+#define BIT_FLAG_7 (1<<7) // 0000 0000 1000 0000
